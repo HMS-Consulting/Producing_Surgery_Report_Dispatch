@@ -1,0 +1,19 @@
+{
+  "version": "2.0",
+  "resources": [
+    {
+      "resource": "queue",
+      "value": {
+        "name": {
+          "defaultValue": "in_str_QueueName",
+          "isExpression": true
+        },
+        "folderPath": {
+          "defaultValue": "IF(not String.IsNullOrEmpty(in_str_CustomOrchestratorQueueFolderPath),in_str_CustomOrchestratorQueueFolderPath,in_ProcessSetup.BusinessProcess.OrchestratorFolderPath)",
+          "isExpression": false
+        }
+      },
+      "metadata": {}
+    }
+  ]
+}
