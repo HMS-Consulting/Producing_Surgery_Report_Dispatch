@@ -3,7 +3,7 @@
     <x:Property Name="io_dt_dataForBulkAddQueueITems" Type="InOutArgument(sd:DataTable)" />
     <x:Property Name="io_ProcessSetup" Type="InOutArgument(hm:ProcessSetup)" />
   </x:Members>
-  <sap:VirtualizedContainerService.HintSize>1047,1328</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>802,1328</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="58">
@@ -95,7 +95,6 @@
       <AssemblyReference>System.ServiceModel.Activities</AssemblyReference>
       <AssemblyReference>HmsTeam.UiPath.Shared</AssemblyReference>
       <AssemblyReference>NPOI</AssemblyReference>
-      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
   <Flowchart DisplayName="Flowchart_Build DataTable" sap:VirtualizedContainerService.HintSize="812,1263" sap2010:WorkflowViewState.IdRef="Flowchart_11">
@@ -111,11 +110,11 @@
         <x:Boolean x:Key="IsPinned">False</x:Boolean>
         <x:Double x:Key="Width">777.59999999999991</x:Double>
         <x:Double x:Key="Height">1227.2000000000003</x:Double>
-        <av:PointCollection x:Key="ConnectorLocation">60,39.9 90,39.9 90,428.5 450,428.5</av:PointCollection>
+        <av:PointCollection x:Key="ConnectorLocation">60,39.9 90,39.9 90,160 160,160</av:PointCollection>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
     <Flowchart.StartNode>
-      <x:Reference>__ReferenceID4</x:Reference>
+      <x:Reference>__ReferenceID5</x:Reference>
     </Flowchart.StartNode>
     <FlowStep x:Name="__ReferenceID0">
       <sap:WorkflowViewStateService.ViewState>
@@ -342,12 +341,12 @@
         </FlowStep>
       </FlowStep.Next>
     </FlowStep>
-    <FlowStep>
+    <FlowStep x:Name="__ReferenceID5">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
-          <av:Point x:Key="ShapeLocation">160,44.02</av:Point>
+          <av:Point x:Key="ShapeLocation">160,134.5</av:Point>
           <av:Size x:Key="ShapeSize">200,51</av:Size>
-          <av:PointCollection x:Key="ConnectorLocation">360,69.52 390,69.52 390,69.04 410,69.04</av:PointCollection>
+          <av:PointCollection x:Key="ConnectorLocation">360,160 390,160 390,69.04 410,69.04</av:PointCollection>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
       <ui:GetRobotCredential TimeoutMS="{x:Null}" AssetName="ChameleonLogon" DisplayName="Get Credential" FolderPath="[io_ProcessSetup.Environment.OrchestratorGeneralFolderPath]" sap:VirtualizedContainerService.HintSize="200,51" sap2010:WorkflowViewState.IdRef="GetRobotCredential_1" Password="[secstr_Password]" Username="[str_Username]">
