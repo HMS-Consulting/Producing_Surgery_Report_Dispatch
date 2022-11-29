@@ -95,6 +95,7 @@
       <AssemblyReference>System.ServiceModel.Activities</AssemblyReference>
       <AssemblyReference>HmsTeam.UiPath.Shared</AssemblyReference>
       <AssemblyReference>NPOI</AssemblyReference>
+      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
   <Flowchart DisplayName="Flowchart_Build DataTable" sap:VirtualizedContainerService.HintSize="812,1263" sap2010:WorkflowViewState.IdRef="Flowchart_11">
@@ -110,7 +111,7 @@
         <x:Boolean x:Key="IsPinned">False</x:Boolean>
         <x:Double x:Key="Width">777.59999999999991</x:Double>
         <x:Double x:Key="Height">1227.2000000000003</x:Double>
-        <av:PointCollection x:Key="ConnectorLocation">60,39.9 90,39.9 90,160 160,160</av:PointCollection>
+        <av:PointCollection x:Key="ConnectorLocation">60,39.9 90,39.9 90,80 130,80</av:PointCollection>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
     <Flowchart.StartNode>
@@ -124,7 +125,7 @@
           <av:PointCollection x:Key="ConnectorLocation">510,166.54 510,196.54 550,196.54 550,201</av:PointCollection>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <h:Login sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="Login_1" in_secure_password="[secstr_Password]" in_str_chameleon_url="[io_ProcessSetup.Environment.GeneralAssets.Custom(&quot;ChameleonURL&quot;).ToString]" in_str_field="[io_ProcessSetup.Environment.GeneralAssets.Custom(&quot;ChameleonField&quot;).ToString]" in_str_username="[str_Username]">
+      <h:Login DisplayName="Chameleon Login" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="Login_1" in_secure_password="[secstr_Password]" in_str_chameleon_url="[io_ProcessSetup.Environment.GeneralAssets.Custom(&quot;ChameleonURL&quot;).ToString]" in_str_field="[io_ProcessSetup.Environment.GeneralAssets.Custom(&quot;ChameleonField&quot;).ToString]" in_str_username="[str_Username]">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -183,7 +184,7 @@
                   <av:PointCollection x:Key="ConnectorLocation">550,353 550,403</av:PointCollection>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
-              <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Use Browser IE: Chameleon" sap:VirtualizedContainerService.HintSize="200,51" sap2010:WorkflowViewState.IdRef="NApplicationCard_2" InteractionMode="Simulate" OpenMode="Never" ScopeGuid="94ec9eb1-dac9-480a-b395-a216103c78e7" Version="V2">
+              <uix:NApplicationCard AttachMode="ByInstance" DisplayName="ניווט לטבלת המשוחררים" sap:VirtualizedContainerService.HintSize="200,51" sap2010:WorkflowViewState.IdRef="NApplicationCard_2" InteractionMode="Simulate" OpenMode="Never" ScopeGuid="94ec9eb1-dac9-480a-b395-a216103c78e7" Version="V2">
                 <uix:NApplicationCard.Body>
                   <ActivityAction x:TypeArguments="x:Object">
                     <ActivityAction.Argument>
@@ -222,7 +223,7 @@
                           <uix:TargetAnchorable BrowserURL="http://wolfchamdbtst/ChameleonNET/NET/PatientList/PatientList.aspx?UnitType=e" DesignTimeRectangle="1008, 136, 130, 22" DesignTimeScaleFactor="1" ElementType="DropDown" FriendlyName="'24 שעות אחרונות'" FullSelectorArgument="&lt;webctrl id='ctl00_myContentPlaceHolder_PatientsSupervision_cboReleaseRange' tableCol='1' tableRow='1' tag='SELECT' /&gt;" FuzzySelectorArgument="&lt;webctrl id='ctl00_myContentPlaceHolder_PatientsSupervision_cboReleaseRange' type='select-one' class='' tag='SELECT' aaname='' /&gt;" Guid="85a15640-0068-4f70-b126-5f60d1159692" InformativeScreenshot="fd7a120c81db5b5d6257bf7e0f977617.png" ScopeSelectorArgument="&lt;html title='Chameleon' /&gt;" SearchSteps="FuzzySelector" Version="V1" Visibility="Interactive" />
                         </uix:NSelectItem.Target>
                       </uix:NSelectItem>
-                      <uix:NClick ClickType="Single" DisplayName="Click 'INPUT'" sap:VirtualizedContainerService.HintSize="334,156" sap2010:WorkflowViewState.IdRef="NClick_4" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="94ec9eb1-dac9-480a-b395-a216103c78e7" Version="V3">
+                      <uix:NClick ClickType="Single" DisplayName="Click Refresh" sap:VirtualizedContainerService.HintSize="334,156" sap2010:WorkflowViewState.IdRef="NClick_4" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="94ec9eb1-dac9-480a-b395-a216103c78e7" Version="V3">
                         <uix:NClick.Target>
                           <uix:TargetAnchorable BrowserURL="http://wolfchamdbtst/ChameleonNET/NET/PatientList/PatientList.aspx?UnitType=e" DesignTimeRectangle="67, 137, 13, 16" DesignTimeScaleFactor="1" ElementType="InputBox" FriendlyName="'INPUT'" FullSelectorArgument="&lt;webctrl tableCol='9' tableRow='1' tag='INPUT' /&gt;" FuzzySelectorArgument="&lt;webctrl type='image' class='' tag='INPUT' aaname='רענן' /&gt;" Guid="8eeaba23-965a-4f49-9f4d-7444d3a158dc" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAABEAAAAUCAYAAABroNZJAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAC4SURBVDhPrZDRDcMgDEQ9WkfpJjBKRmGQfmQT2gc1OlECaZuTToDBL75YvkDXQUIIxb/sUYPEGEthJt6YWU6P9K5ULSH7Xuus/gbQxyToCHLbrIFodn8VB4iCUkrFqiGEBm9WK2gah4d2f3mr5x7AOoT0kwBBPpEC0DIOD4H0jVpfxkHaqJP4hMs4PQAj/pFOohr+EwWo/QPLOEeTaH0ZB/UgPaNpHC7PehiHol+c3bsa5B9dAMn5CRglgwppW89xAAAAAElFTkSuQmCC" InformativeScreenshot="0b7b3bc66eed6e7d0191180b9e2621c3.png" ScopeSelectorArgument="&lt;html title='Chameleon' /&gt;" SearchSteps="FuzzySelector, Image" Version="V1" Visibility="Interactive" />
                         </uix:NClick.Target>
@@ -254,7 +255,7 @@
                         <ActivityAction.Argument>
                           <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
                         </ActivityAction.Argument>
-                        <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="476,1212" sap2010:WorkflowViewState.IdRef="Sequence_3">
+                        <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="476,1218" sap2010:WorkflowViewState.IdRef="Sequence_3">
                           <sap:WorkflowViewStateService.ViewState>
                             <scg:Dictionary x:TypeArguments="x:String, x:Object">
                               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -297,19 +298,19 @@
                             </ui:MultipleAssign.AssignOperations>
                           </ui:MultipleAssign>
                           <ui:AddDataColumn x:TypeArguments="x:Object" AllowDBNull="{x:Null}" AutoIncrement="{x:Null}" Column="{x:Null}" DefaultValue="{x:Null}" MaxLength="{x:Null}" Unique="{x:Null}" ColumnName="Reference" DataTable="[io_dt_dataForBulkAddQueueITems]" DisplayName="Add Data Column" sap:VirtualizedContainerService.HintSize="434,185" sap2010:WorkflowViewState.IdRef="AddDataColumn`1_1" />
-                          <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[io_dt_dataForBulkAddQueueITems]" DisplayName="For Each Row in Data Table" sap:VirtualizedContainerService.HintSize="434,272" sap2010:WorkflowViewState.IdRef="ForEachRow_1">
+                          <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[io_dt_dataForBulkAddQueueITems]" DisplayName="For Each Row in Data Table" sap:VirtualizedContainerService.HintSize="434,276" sap2010:WorkflowViewState.IdRef="ForEachRow_1">
                             <ui:ForEachRow.Body>
                               <ActivityAction x:TypeArguments="sd:DataRow">
                                 <ActivityAction.Argument>
                                   <DelegateInArgument x:TypeArguments="sd:DataRow" Name="CurrentRow" />
                                 </ActivityAction.Argument>
-                                <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="304,152" sap2010:WorkflowViewState.IdRef="Sequence_4">
+                                <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="304,155" sap2010:WorkflowViewState.IdRef="Sequence_4">
                                   <sap:WorkflowViewStateService.ViewState>
                                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                     </scg:Dictionary>
                                   </sap:WorkflowViewStateService.ViewState>
-                                  <Assign sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_1">
+                                  <Assign sap:VirtualizedContainerService.HintSize="262,61" sap2010:WorkflowViewState.IdRef="Assign_1">
                                     <Assign.To>
                                       <OutArgument x:TypeArguments="x:Object">[CurrentRow("Reference")]</OutArgument>
                                     </Assign.To>
@@ -344,12 +345,12 @@
     <FlowStep x:Name="__ReferenceID5">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
-          <av:Point x:Key="ShapeLocation">160,134.5</av:Point>
+          <av:Point x:Key="ShapeLocation">130,54.5</av:Point>
           <av:Size x:Key="ShapeSize">200,51</av:Size>
-          <av:PointCollection x:Key="ConnectorLocation">360,160 390,160 390,69.04 410,69.04</av:PointCollection>
+          <av:PointCollection x:Key="ConnectorLocation">330,80 360,80 360,69.04 410,69.04</av:PointCollection>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <ui:GetRobotCredential TimeoutMS="{x:Null}" AssetName="ChameleonLogon" DisplayName="Get Credential" FolderPath="[io_ProcessSetup.Environment.OrchestratorGeneralFolderPath]" sap:VirtualizedContainerService.HintSize="200,51" sap2010:WorkflowViewState.IdRef="GetRobotCredential_1" Password="[secstr_Password]" Username="[str_Username]">
+      <ui:GetRobotCredential TimeoutMS="{x:Null}" AssetName="ChameleonLogon" DisplayName="Get Chameleon credentials" FolderPath="[io_ProcessSetup.Environment.OrchestratorGeneralFolderPath]" sap:VirtualizedContainerService.HintSize="200,51" sap2010:WorkflowViewState.IdRef="GetRobotCredential_1" Password="[secstr_Password]" Username="[str_Username]">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -365,7 +366,7 @@
               <av:PointCollection x:Key="ConnectorLocation">510,94.54 510,144.54</av:PointCollection>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
-          <ui:KillProcess ContinueOnError="{x:Null}" Process="{x:Null}" AppliesTo="OnlyCurrentUser" DisplayName="Kill Process" sap:VirtualizedContainerService.HintSize="200,51" sap2010:WorkflowViewState.IdRef="KillProcess_1" ProcessName="iexplore">
+          <ui:KillProcess ContinueOnError="{x:Null}" Process="{x:Null}" AppliesTo="OnlyCurrentUser" DisplayName="Kill Process iexplore" sap:VirtualizedContainerService.HintSize="200,51" sap2010:WorkflowViewState.IdRef="KillProcess_1" ProcessName="iexplore">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
