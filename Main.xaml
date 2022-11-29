@@ -1,4 +1,4 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="Main" this:Main.in_str_BusinessProcessName="CreateSurgeryReport" this:Main.in_str_BusinessDepartmentName="Wolfson" this:Main.in_str_QueueName="SurgeryReport" this:Main.in_str_OrchestrartorMainFolderName="Root" this:Main.in_str_GeneralFolderName=".General" this:Main.in_boo_BulkTypeAllOrNothing="True" this:Main.in_boo_ToRaiseErrorIfAllFailedDueUniqueRef="True" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:av="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:h="clr-namespace:HmsTeam_Framework_Activities;assembly=HmsTeam.Framework.Activities" xmlns:hm="clr-namespace:HMS.Modeling;assembly=HmsTeam.UiPath.Shared" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:njl="clr-namespace:Newtonsoft.Json.Linq;assembly=Newtonsoft.Json" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="Main" this:Main.in_str_BusinessProcessName="CreateSurgeryReport" this:Main.in_str_BusinessDepartmentName="Wolfson" this:Main.in_str_QueueName="SurgeryReport" this:Main.in_str_OrchestrartorMainFolderName="Root" this:Main.in_str_GeneralFolderName=".General" this:Main.in_boo_BulkTypeAllOrNothing="False" this:Main.in_boo_ToRaiseErrorIfAllFailedDueUniqueRef="False" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:av="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:h="clr-namespace:HmsTeam_Framework_Activities;assembly=HmsTeam.Framework.Activities" xmlns:hm="clr-namespace:HMS.Modeling;assembly=HmsTeam.UiPath.Shared" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:njl="clr-namespace:Newtonsoft.Json.Linq;assembly=Newtonsoft.Json" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
     <x:Property Name="in_str_BusinessProcessName" Type="InArgument(x:String)" />
     <x:Property Name="in_str_BusinessDepartmentName" Type="InArgument(x:String)" />
@@ -416,7 +416,7 @@
           </sap:WorkflowViewStateService.ViewState>
           <Transition.Condition>[out_list_jobSystemExceptions.Count=0 AndAlso in_ProcessSetup.Job.EndedReason=JobEndedReason.None]</Transition.Condition>
           <Transition.To>
-            <State x:Name="__ReferenceID18" sap2010:Annotation.AnnotationText="For example: build a datatable from a webpage, from excel, and much more. Build it into argument dt_dataForBulkAddQueueItems" DisplayName="State_Build DataTable" sap:VirtualizedContainerService.HintSize="526,982" sap2010:WorkflowViewState.IdRef="State_8">
+            <State x:Name="__ReferenceID18" sap2010:Annotation.AnnotationText="For example: build a datatable from a webpage, from excel, and much more. Build it into argument dt_dataForBulkAddQueueItems" DisplayName="State_Build DataTable" sap:VirtualizedContainerService.HintSize="526,1022" sap2010:WorkflowViewState.IdRef="State_8">
               <State.Entry>
                 <Sequence sap:VirtualizedContainerService.HintSize="480,553" sap2010:WorkflowViewState.IdRef="Sequence_66">
                   <sap:WorkflowViewStateService.ViewState>
@@ -436,12 +436,8 @@
                     <TryCatch.Try>
                       <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke BuildDataTable workflow" sap:VirtualizedContainerService.HintSize="334,112" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_21" LogEntry="No" LogExit="No" UnSafe="False" WorkflowFileName="BuildDataTable.xaml">
                         <ui:InvokeWorkflowFile.Arguments>
-                          <InOutArgument x:TypeArguments="sd:DataTable" x:Key="io_dt_dataForBulkAddQueueITems">
-                            <mva:VisualBasicReference x:TypeArguments="sd:DataTable" ExpressionText="dt_dataForBulkAddQueueITems" />
-                          </InOutArgument>
-                          <InOutArgument x:TypeArguments="hm:ProcessSetup" x:Key="io_ProcessSetup">
-                            <mva:VisualBasicReference x:TypeArguments="hm:ProcessSetup" ExpressionText="in_ProcessSetup" />
-                          </InOutArgument>
+                          <InOutArgument x:TypeArguments="sd:DataTable" x:Key="io_dt_dataForBulkAddQueueITems">[dt_dataForBulkAddQueueITems]</InOutArgument>
+                          <InOutArgument x:TypeArguments="hm:ProcessSetup" x:Key="io_ProcessSetup">[in_ProcessSetup]</InOutArgument>
                         </ui:InvokeWorkflowFile.Arguments>
                       </ui:InvokeWorkflowFile>
                     </TryCatch.Try>
@@ -515,17 +511,17 @@
                   </sap:WorkflowViewStateService.ViewState>
                   <Transition.Condition>[in_ProcessSetup.Job.EndedReason.Equals(JobEndedReason.None) AndAlso dt_dataForBulkAddQueueITems IsNot Nothing AndAlso dt_dataForBulkAddQueueITems.Rows.Count&gt;0 AndAlso out_list_JobBusinessExceptions.Count=0 AndAlso out_list_JobSystemExceptions.Count=0]</Transition.Condition>
                   <Transition.To>
-                    <State x:Name="__ReferenceID19" sap2010:Annotation.AnnotationText="" DisplayName="State_Bulk Add Queue ITems" sap:VirtualizedContainerService.HintSize="219,122" sap2010:WorkflowViewState.IdRef="State_13">
+                    <State x:Name="__ReferenceID19" sap2010:Annotation.AnnotationText="" DisplayName="State_Bulk Add Queue ITems" sap:VirtualizedContainerService.HintSize="1037,2721" sap2010:WorkflowViewState.IdRef="State_13">
                       <State.Entry>
-                        <Sequence DisplayName="Seq_Add JobGUID column and bulk add queue items" sap:VirtualizedContainerService.HintSize="990.4,2228" sap2010:WorkflowViewState.IdRef="Sequence_76">
+                        <Sequence DisplayName="Seq_Add JobGUID column and bulk add queue items" sap:VirtualizedContainerService.HintSize="991,2330" sap2010:WorkflowViewState.IdRef="Sequence_76">
                           <sap:WorkflowViewStateService.ViewState>
                             <scg:Dictionary x:TypeArguments="x:String, x:Object">
                               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                               <x:Boolean x:Key="IsPinned">False</x:Boolean>
                             </scg:Dictionary>
                           </sap:WorkflowViewStateService.ViewState>
-                          <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="948.8,92.8" sap2010:WorkflowViewState.IdRef="LogMessage_6" Level="Info" Message="[&quot;The following chars will be deleted from columns names: @,.,#&quot;]" />
-                          <ui:ForEach x:TypeArguments="sd:DataColumn" CurrentIndex="{x:Null}" DisplayName="For Each" sap:VirtualizedContainerService.HintSize="948.8,287.2" sap2010:WorkflowViewState.IdRef="ForEach`1_2" Values="[dt_dataForBulkAddQueueITems.Columns]">
+                          <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="949,91" sap2010:WorkflowViewState.IdRef="LogMessage_6" Level="Info" Message="[&quot;The following chars will be deleted from columns names: @,.,#&quot;]" />
+                          <ui:ForEach x:TypeArguments="sd:DataColumn" CurrentIndex="{x:Null}" DisplayName="For Each" sap:VirtualizedContainerService.HintSize="949,277" sap2010:WorkflowViewState.IdRef="ForEach`1_2" Values="[dt_dataForBulkAddQueueITems.Columns]">
                             <ui:ForEach.Body>
                               <ActivityAction x:TypeArguments="sd:DataColumn">
                                 <ActivityAction.Argument>
@@ -550,7 +546,7 @@
                             </ui:ForEach.Body>
                           </ui:ForEach>
                           <ui:AddDataColumn x:TypeArguments="x:String" AllowDBNull="{x:Null}" Column="{x:Null}" MaxLength="{x:Null}" AutoIncrement="False" ColumnName="CreatorJobGUID" DataTable="[dt_dataForBulkAddQueueITems]" DefaultValue="[in_ProcessSetup.Job.GUID]" DisplayName="Add Data Column" sap:VirtualizedContainerService.HintSize="948.8,22.4" sap2010:WorkflowViewState.IdRef="AddDataColumn`1_2" Unique="False" />
-                          <If Condition="[in_boo_BulkTypeAllOrNothing]" DisplayName="If AllOrNothing" sap:VirtualizedContainerService.HintSize="948.8,397.6" sap2010:WorkflowViewState.IdRef="If_12">
+                          <If Condition="[in_boo_BulkTypeAllOrNothing]" DisplayName="If AllOrNothing" sap:VirtualizedContainerService.HintSize="949,513" sap2010:WorkflowViewState.IdRef="If_12">
                             <sap:WorkflowViewStateService.ViewState>
                               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -558,38 +554,38 @@
                               </scg:Dictionary>
                             </sap:WorkflowViewStateService.ViewState>
                             <If.Then>
-                              <Sequence sap:VirtualizedContainerService.HintSize="375.2,248" sap2010:WorkflowViewState.IdRef="Sequence_74">
+                              <Sequence sap:VirtualizedContainerService.HintSize="376,355" sap2010:WorkflowViewState.IdRef="Sequence_74">
                                 <sap:WorkflowViewStateService.ViewState>
                                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                   </scg:Dictionary>
                                 </sap:WorkflowViewStateService.ViewState>
-                                <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="333.6,92.8" sap2010:WorkflowViewState.IdRef="LogMessage_7" Level="Info" Message="[&quot;Trying to bulk add queue items (All or nothing)&quot;]" />
-                                <ui:BulkAddQueueItems TimeoutMS="{x:Null}" ContinueOnError="False" DisplayName="Bulk Add Queue Items" FolderPath="[IF(not String.IsNullOrEmpty(in_str_CustomOrchestratorQueueFolderPath),in_str_CustomOrchestratorQueueFolderPath,in_ProcessSetup.BusinessProcess.OrchestratorFolderPath)]" sap:VirtualizedContainerService.HintSize="333.6,22.4" sap2010:WorkflowViewState.IdRef="BulkAddQueueItems_3" QueueItemsDataTable="[dt_dataForBulkAddQueueITems]" QueueName="[in_str_QueueName]" Result="[dt_BulkResult]" />
+                                <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,91" sap2010:WorkflowViewState.IdRef="LogMessage_7" Level="Info" Message="[&quot;Trying to bulk add queue items (All or nothing)&quot;]" />
+                                <ui:BulkAddQueueItems TimeoutMS="{x:Null}" ContinueOnError="False" DisplayName="Bulk Add Queue Items" FolderPath="[IF(not String.IsNullOrEmpty(in_str_CustomOrchestratorQueueFolderPath),in_str_CustomOrchestratorQueueFolderPath,in_ProcessSetup.BusinessProcess.OrchestratorFolderPath)]" sap:VirtualizedContainerService.HintSize="334,132" sap2010:WorkflowViewState.IdRef="BulkAddQueueItems_3" QueueItemsDataTable="[dt_dataForBulkAddQueueITems]" QueueName="[in_str_QueueName]" Result="[dt_BulkResult]" />
                               </Sequence>
                             </If.Then>
                             <If.Else>
-                              <Sequence sap:VirtualizedContainerService.HintSize="375.2,248" sap2010:WorkflowViewState.IdRef="Sequence_75">
+                              <Sequence sap:VirtualizedContainerService.HintSize="376,355" sap2010:WorkflowViewState.IdRef="Sequence_75">
                                 <sap:WorkflowViewStateService.ViewState>
                                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                   </scg:Dictionary>
                                 </sap:WorkflowViewStateService.ViewState>
-                                <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="333.6,92.8" sap2010:WorkflowViewState.IdRef="LogMessage_8" Level="Info" Message="[&quot;Trying to bulk add queue items (Independently)&quot;]" />
-                                <ui:BulkAddQueueItems TimeoutMS="{x:Null}" CommitType="ProcessAllIndependently" ContinueOnError="False" DisplayName="Bulk Add Queue Items" FolderPath="[IF(not String.IsNullOrEmpty(in_str_CustomOrchestratorQueueFolderPath),in_str_CustomOrchestratorQueueFolderPath,in_ProcessSetup.BusinessProcess.OrchestratorFolderPath)]" sap:VirtualizedContainerService.HintSize="333.6,22.4" sap2010:WorkflowViewState.IdRef="BulkAddQueueItems_4" QueueItemsDataTable="[dt_dataForBulkAddQueueITems]" QueueName="[in_str_QueueName]" Result="[dt_BulkResult]" />
+                                <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,91" sap2010:WorkflowViewState.IdRef="LogMessage_8" Level="Info" Message="[&quot;Trying to bulk add queue items (Independently)&quot;]" />
+                                <ui:BulkAddQueueItems TimeoutMS="{x:Null}" CommitType="ProcessAllIndependently" ContinueOnError="False" DisplayName="Bulk Add Queue Items" FolderPath="[IF(not String.IsNullOrEmpty(in_str_CustomOrchestratorQueueFolderPath),in_str_CustomOrchestratorQueueFolderPath,in_ProcessSetup.BusinessProcess.OrchestratorFolderPath)]" sap:VirtualizedContainerService.HintSize="334,132" sap2010:WorkflowViewState.IdRef="BulkAddQueueItems_4" QueueItemsDataTable="[dt_dataForBulkAddQueueITems]" QueueName="[in_str_QueueName]" Result="[dt_BulkResult]" />
                               </Sequence>
                             </If.Else>
                           </If>
-                          <Flowchart sap:VirtualizedContainerService.HintSize="948.8,1175.2" sap2010:WorkflowViewState.IdRef="Flowchart_1">
+                          <Flowchart sap:VirtualizedContainerService.HintSize="949,1175" sap2010:WorkflowViewState.IdRef="Flowchart_1">
                             <sap:WorkflowViewStateService.ViewState>
                               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                 <x:Boolean x:Key="IsPinned">False</x:Boolean>
                                 <av:Point x:Key="ShapeLocation">10,2.5</av:Point>
-                                <av:Size x:Key="ShapeSize">60,75.2</av:Size>
+                                <av:Size x:Key="ShapeSize">60,75</av:Size>
                                 <av:PointCollection x:Key="ConnectorLocation">40,77.7 40,107.7 330,107.7 330,50 360,50</av:PointCollection>
                                 <x:Double x:Key="Width">915.20000000000016</x:Double>
-                                <x:Double x:Key="Height">1138.3999999999999</x:Double>
+                                <x:Double x:Key="Height">1138.6</x:Double>
                               </scg:Dictionary>
                             </sap:WorkflowViewStateService.ViewState>
                             <Flowchart.StartNode>
@@ -600,7 +596,7 @@
                                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                   <av:Point x:Key="ShapeLocation">370.641666666667,177.7</av:Point>
-                                  <av:Size x:Key="ShapeSize">70.4,87.2</av:Size>
+                                  <av:Size x:Key="ShapeSize">70,87</av:Size>
                                   <av:PointCollection x:Key="TrueConnector">370.641666666667,221.3 201.2,221.3 201.2,248.8</av:PointCollection>
                                   <av:PointCollection x:Key="FalseConnector">441.041666666667,221.3 471.041666666667,221.3 471.041666666667,250 559.936666666667,250</av:PointCollection>
                                 </scg:Dictionary>
@@ -610,7 +606,7 @@
                                   <sap:WorkflowViewStateService.ViewState>
                                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                       <av:Point x:Key="ShapeLocation">101.2,248.8</av:Point>
-                                      <av:Size x:Key="ShapeSize">200,22.4</av:Size>
+                                      <av:Size x:Key="ShapeSize">200,22</av:Size>
                                       <av:PointCollection x:Key="ConnectorLocation">201.2,271.2 201.2,321.2</av:PointCollection>
                                     </scg:Dictionary>
                                   </sap:WorkflowViewStateService.ViewState>
@@ -620,7 +616,7 @@
                                       <sap:WorkflowViewStateService.ViewState>
                                         <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                           <av:Point x:Key="ShapeLocation">101.2,321.2</av:Point>
-                                          <av:Size x:Key="ShapeSize">200,22.4</av:Size>
+                                          <av:Size x:Key="ShapeSize">200,22</av:Size>
                                           <av:PointCollection x:Key="ConnectorLocation">201.2,343.6 201.2,393.6</av:PointCollection>
                                         </scg:Dictionary>
                                       </sap:WorkflowViewStateService.ViewState>
@@ -630,7 +626,7 @@
                                           <sap:WorkflowViewStateService.ViewState>
                                             <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                               <av:Point x:Key="ShapeLocation">70,393.6</av:Point>
-                                              <av:Size x:Key="ShapeSize">262.4,60</av:Size>
+                                              <av:Size x:Key="ShapeSize">262,60</av:Size>
                                               <av:PointCollection x:Key="ConnectorLocation">201.2,453.6 201.2,481.3</av:PointCollection>
                                             </scg:Dictionary>
                                           </sap:WorkflowViewStateService.ViewState>
@@ -647,7 +643,7 @@
                                               <sap:WorkflowViewStateService.ViewState>
                                                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                                   <av:Point x:Key="ShapeLocation">70,481.3</av:Point>
-                                                  <av:Size x:Key="ShapeSize">262.4,60</av:Size>
+                                                  <av:Size x:Key="ShapeSize">262,60</av:Size>
                                                   <av:PointCollection x:Key="ConnectorLocation">201.2,541.3 201.2,590 328,590</av:PointCollection>
                                                 </scg:Dictionary>
                                               </sap:WorkflowViewStateService.ViewState>
@@ -664,7 +660,7 @@
                                                   <sap:WorkflowViewStateService.ViewState>
                                                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                                       <av:Point x:Key="ShapeLocation">328,563.6</av:Point>
-                                                      <av:Size x:Key="ShapeSize">200,52.8</av:Size>
+                                                      <av:Size x:Key="ShapeSize">200,53</av:Size>
                                                       <av:PointCollection x:Key="ConnectorLocation">428,616.4 428,661.3</av:PointCollection>
                                                     </scg:Dictionary>
                                                   </sap:WorkflowViewStateService.ViewState>
@@ -682,7 +678,7 @@
                                                         <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                                           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                                           <av:Point x:Key="ShapeLocation">386,661.3</av:Point>
-                                                          <av:Size x:Key="ShapeSize">84,87.2</av:Size>
+                                                          <av:Size x:Key="ShapeSize">84,87</av:Size>
                                                           <av:PointCollection x:Key="TrueConnector">386,704.9 236,704.9 236,790</av:PointCollection>
                                                           <av:PointCollection x:Key="FalseConnector">470,704.9 640,704.9 640,780</av:PointCollection>
                                                         </scg:Dictionary>
@@ -692,11 +688,11 @@
                                                           <sap:WorkflowViewStateService.ViewState>
                                                             <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                                               <av:Point x:Key="ShapeLocation">104.8,790</av:Point>
-                                                              <av:Size x:Key="ShapeSize">262.4,60</av:Size>
+                                                              <av:Size x:Key="ShapeSize">262,60</av:Size>
                                                               <av:PointCollection x:Key="ConnectorLocation">236,850 236,898.5</av:PointCollection>
                                                             </scg:Dictionary>
                                                           </sap:WorkflowViewStateService.ViewState>
-                                                          <Assign sap:VirtualizedContainerService.HintSize="262.4,60" sap2010:WorkflowViewState.IdRef="Assign_155">
+                                                          <Assign sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_155">
                                                             <Assign.To>
                                                               <OutArgument x:TypeArguments="sd:DataTable">[dt_QueueItemsFailed]</OutArgument>
                                                             </Assign.To>
@@ -714,27 +710,27 @@
                                                               <sap:WorkflowViewStateService.ViewState>
                                                                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                                                   <av:Point x:Key="ShapeLocation">136,898.5</av:Point>
-                                                                  <av:Size x:Key="ShapeSize">200,52.8</av:Size>
+                                                                  <av:Size x:Key="ShapeSize">200,51</av:Size>
                                                                   <av:PointCollection x:Key="ConnectorLocation">236,951.3 236,981.3 450,981.3 450,1085.6</av:PointCollection>
                                                                 </scg:Dictionary>
                                                               </sap:WorkflowViewStateService.ViewState>
-                                                              <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="200,52.8" sap2010:WorkflowViewState.IdRef="LogMessage_9" Level="Warn" Message="[&quot;All items (&quot;+dt_dataForBulkAddQueueItems.Rows.Count.ToString+&quot;) failed being added to queue. Error: from row &quot;+(Convert.ToInt32(dt_BulkResult.Rows(0)(&quot;RowNumber&quot;))-1).ToString+&quot;: &quot;+dt_BulkResult.Rows(0)(&quot;ErrorMessage&quot;).ToString+&quot; (Code &quot;+dt_BulkResult.Rows(0)(&quot;ErrorCode&quot;).ToString+&quot;)&quot;]" />
+                                                              <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="200,51" sap2010:WorkflowViewState.IdRef="LogMessage_9" Level="Warn" Message="[&quot;All items (&quot;+dt_dataForBulkAddQueueItems.Rows.Count.ToString+&quot;) failed being added to queue. Error: from row &quot;+(Convert.ToInt32(dt_BulkResult.Rows(0)(&quot;RowNumber&quot;))-1).ToString+&quot;: &quot;+dt_BulkResult.Rows(0)(&quot;ErrorMessage&quot;).ToString+&quot; (Code &quot;+dt_BulkResult.Rows(0)(&quot;ErrorCode&quot;).ToString+&quot;)&quot;]" />
                                                               <FlowStep.Next>
                                                                 <FlowStep x:Name="__ReferenceID1">
                                                                   <sap:WorkflowViewStateService.ViewState>
                                                                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                                                       <av:Point x:Key="ShapeLocation">350,1085.6</av:Point>
-                                                                      <av:Size x:Key="ShapeSize">200,52.8</av:Size>
+                                                                      <av:Size x:Key="ShapeSize">200,51</av:Size>
                                                                     </scg:Dictionary>
                                                                   </sap:WorkflowViewStateService.ViewState>
-                                                                  <If Condition="[in_boo_ToRaiseErrorIfAllFailedDueUniqueRef OrElse not boo_AllErrorsUniqueRef]" DisplayName="If need to raise an error" sap:VirtualizedContainerService.HintSize="200,52.8" sap2010:WorkflowViewState.IdRef="If_13">
+                                                                  <If Condition="[in_boo_ToRaiseErrorIfAllFailedDueUniqueRef OrElse not boo_AllErrorsUniqueRef]" DisplayName="If need to raise an error" sap:VirtualizedContainerService.HintSize="484,247" sap2010:WorkflowViewState.IdRef="If_13">
                                                                     <sap:WorkflowViewStateService.ViewState>
                                                                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                                                         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                                                       </scg:Dictionary>
                                                                     </sap:WorkflowViewStateService.ViewState>
                                                                     <If.Then>
-                                                                      <Throw Exception="[New System.Exception(&quot;Error in bulk add queue items!&quot;+vbCr+String.Join(&quot;;&quot;,dt_BulkResult.AsEnumerable().Select(function(x) &quot;Row &quot;+x(&quot;RowNumber&quot;).ToString+&quot;-&quot;+x(&quot;ErrorMessage&quot;).ToString)))]" sap:VirtualizedContainerService.HintSize="200,22.4" sap2010:WorkflowViewState.IdRef="Throw_7" />
+                                                                      <Throw Exception="[New System.Exception(&quot;Error in bulk add queue items!&quot;+vbCr+String.Join(&quot;;&quot;,dt_BulkResult.AsEnumerable().Select(function(x) &quot;Row &quot;+x(&quot;RowNumber&quot;).ToString+&quot;-&quot;+x(&quot;ErrorMessage&quot;).ToString)))]" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="Throw_7" />
                                                                     </If.Then>
                                                                   </If>
                                                                 </FlowStep>
@@ -748,11 +744,11 @@
                                                           <sap:WorkflowViewStateService.ViewState>
                                                             <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                                               <av:Point x:Key="ShapeLocation">508.8,780</av:Point>
-                                                              <av:Size x:Key="ShapeSize">262.4,60</av:Size>
+                                                              <av:Size x:Key="ShapeSize">262,60</av:Size>
                                                               <av:PointCollection x:Key="ConnectorLocation">640,840 640,880</av:PointCollection>
                                                             </scg:Dictionary>
                                                           </sap:WorkflowViewStateService.ViewState>
-                                                          <Assign sap:VirtualizedContainerService.HintSize="262.4,60" sap2010:WorkflowViewState.IdRef="Assign_156">
+                                                          <Assign sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_156">
                                                             <Assign.To>
                                                               <OutArgument x:TypeArguments="sd:DataTable">[dt_QueueItemsFailed]</OutArgument>
                                                             </Assign.To>
@@ -770,11 +766,11 @@
                                                               <sap:WorkflowViewStateService.ViewState>
                                                                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                                                   <av:Point x:Key="ShapeLocation">540,880</av:Point>
-                                                                  <av:Size x:Key="ShapeSize">200,52.8</av:Size>
+                                                                  <av:Size x:Key="ShapeSize">200,51</av:Size>
                                                                   <av:PointCollection x:Key="ConnectorLocation">640,932.8 640,982.8</av:PointCollection>
                                                                 </scg:Dictionary>
                                                               </sap:WorkflowViewStateService.ViewState>
-                                                              <If Condition="[dt_BulkResult.Rows.Count&lt;dt_dataForBulkAddQueueItems.Rows.Count]" DisplayName="If there is at lease 1 success" sap:VirtualizedContainerService.HintSize="200,52.8" sap2010:WorkflowViewState.IdRef="If_15">
+                                                              <If Condition="[dt_BulkResult.Rows.Count&lt;dt_dataForBulkAddQueueItems.Rows.Count]" DisplayName="If there is at lease 1 success" sap:VirtualizedContainerService.HintSize="200,51" sap2010:WorkflowViewState.IdRef="If_15">
                                                                 <sap:WorkflowViewStateService.ViewState>
                                                                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                                                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -801,11 +797,11 @@
                                                                   <sap:WorkflowViewStateService.ViewState>
                                                                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                                                       <av:Point x:Key="ShapeLocation">540,982.8</av:Point>
-                                                                      <av:Size x:Key="ShapeSize">200,52.8</av:Size>
+                                                                      <av:Size x:Key="ShapeSize">200,51</av:Size>
                                                                       <av:PointCollection x:Key="ConnectorLocation">640,1035.6 640,1065.6 450,1065.6 450,1085.6</av:PointCollection>
                                                                     </scg:Dictionary>
                                                                   </sap:WorkflowViewStateService.ViewState>
-                                                                  <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="200,52.8" sap2010:WorkflowViewState.IdRef="LogMessage_10" Level="Warn" Message="[IF(dt_dataForBulkAddQueueItems.Rows.Count&gt;dt_BulkResult.Rows.Count,&quot;Items added to queue: &quot;+(dt_dataForBulkAddQueueItems.Rows.Count-dt_BulkResult.Rows.Count).ToString+Environment.NewLine,&quot;All &quot;)+&quot;Items failed adding to queue (&quot;+dt_BulkResult.Rows.Count.ToString+&quot;):&quot;+Environment.NewLine+String.Join(Environment.NewLine, dt_BulkResult.AsEnumerable.GroupBy(function(r) r(&quot;ErrorMessage&quot;).ToString+&quot;(Code &quot;+r(&quot;ErrorCode&quot;).ToString+&quot;)&quot;).Select(function(g) g.Count.ToString+&quot;: &quot;+g.Key))]" />
+                                                                  <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="200,51" sap2010:WorkflowViewState.IdRef="LogMessage_10" Level="Warn" Message="[IF(dt_dataForBulkAddQueueItems.Rows.Count&gt;dt_BulkResult.Rows.Count,&quot;Items added to queue: &quot;+(dt_dataForBulkAddQueueItems.Rows.Count-dt_BulkResult.Rows.Count).ToString+Environment.NewLine,&quot;All &quot;)+&quot;Items failed adding to queue (&quot;+dt_BulkResult.Rows.Count.ToString+&quot;):&quot;+Environment.NewLine+String.Join(Environment.NewLine, dt_BulkResult.AsEnumerable.GroupBy(function(r) r(&quot;ErrorMessage&quot;).ToString+&quot;(Code &quot;+r(&quot;ErrorCode&quot;).ToString+&quot;)&quot;).Select(function(g) g.Count.ToString+&quot;: &quot;+g.Key))]" />
                                                                   <FlowStep.Next>
                                                                     <x:Reference>__ReferenceID1</x:Reference>
                                                                   </FlowStep.Next>
@@ -832,7 +828,7 @@
                                   <sap:WorkflowViewStateService.ViewState>
                                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                       <av:Point x:Key="ShapeLocation">559.936666666667,220</av:Point>
-                                      <av:Size x:Key="ShapeSize">262.4,60</av:Size>
+                                      <av:Size x:Key="ShapeSize">262,60</av:Size>
                                       <av:PointCollection x:Key="ConnectorLocation">691.136666666667,280 691.136666666667,310 691.041666666667,310 691.041666666667,324.9</av:PointCollection>
                                     </scg:Dictionary>
                                   </sap:WorkflowViewStateService.ViewState>
@@ -854,7 +850,7 @@
                                       <sap:WorkflowViewStateService.ViewState>
                                         <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                           <av:Point x:Key="ShapeLocation">591.041666666667,324.9</av:Point>
-                                          <av:Size x:Key="ShapeSize">200,52.8</av:Size>
+                                          <av:Size x:Key="ShapeSize">200,53</av:Size>
                                         </scg:Dictionary>
                                       </sap:WorkflowViewStateService.ViewState>
                                       <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="200,52.8" sap2010:WorkflowViewState.IdRef="LogMessage_11" Level="Info" Message="[&quot;All items (&quot;+dt_dataForBulkAddQueueItems.Rows.Count.ToString+&quot;) added successfuly&quot;]" />
@@ -874,7 +870,7 @@
                               <sap:WorkflowViewStateService.ViewState>
                                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                   <av:Point x:Key="ShapeLocation">360,23.6</av:Point>
-                                  <av:Size x:Key="ShapeSize">200,52.8</av:Size>
+                                  <av:Size x:Key="ShapeSize">200,53</av:Size>
                                   <av:PointCollection x:Key="ConnectorLocation">460,76.4 460,106.4 405.841666666667,106.4 405.841666666667,177.7</av:PointCollection>
                                 </scg:Dictionary>
                               </sap:WorkflowViewStateService.ViewState>

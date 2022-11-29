@@ -3,6 +3,8 @@
   "description": "NewProject-DispatchQueueItem.s",
   "main": "Main.xaml",
   "dependencies": {
+    "HmsTeam.Chameleon.Activities": "[1.0.4]",
+    "HmsTeam.DataTable.Activities": "[2022.8.4]",
     "HmsTeam.Framework.Activities": "2022.5.20",
     "HmsTeam.OrchestratorAPI.Activities": "[2022.7.8]",
     "HmsTeam.Shared": "2022.3.7",
