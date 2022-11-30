@@ -1,4 +1,4 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="Main" this:Main.in_str_BusinessProcessName="CreateSurgeryReport" this:Main.in_str_BusinessDepartmentName="Wolfson" this:Main.in_str_QueueName="SurgeryReport" this:Main.in_str_OrchestrartorMainFolderName="Root" this:Main.in_str_GeneralFolderName=".General" this:Main.in_boo_BulkTypeAllOrNothing="False" this:Main.in_boo_ToRaiseErrorIfAllFailedDueUniqueRef="False" this:Main.in_datetime_Min="[Now.AddDays(-7).ToString(&quot;dd/MM/yyyy&quot;)]" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:av="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:h="clr-namespace:HmsTeam_Framework_Activities;assembly=HmsTeam.Framework.Activities" xmlns:hm="clr-namespace:HMS.Modeling;assembly=HmsTeam.UiPath.Shared" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:njl="clr-namespace:Newtonsoft.Json.Linq;assembly=Newtonsoft.Json" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="Main" this:Main.in_str_BusinessProcessName="CreateSurgeryReport" this:Main.in_str_BusinessDepartmentName="Wolfson" this:Main.in_str_QueueName="SurgeryReport" this:Main.in_str_OrchestrartorMainFolderName="Root" this:Main.in_str_GeneralFolderName=".General" this:Main.in_boo_BulkTypeAllOrNothing="False" this:Main.in_boo_ToRaiseErrorIfAllFailedDueUniqueRef="False" this:Main.in_int_DaysIntervalForMinDatetime="7" this:Main.in_int_DaysIntervalForMaxDatetime="1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:av="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:h="clr-namespace:HmsTeam_Framework_Activities;assembly=HmsTeam.Framework.Activities" xmlns:hm="clr-namespace:HMS.Modeling;assembly=HmsTeam.UiPath.Shared" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:njl="clr-namespace:Newtonsoft.Json.Linq;assembly=Newtonsoft.Json" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
     <x:Property Name="in_str_BusinessProcessName" Type="InArgument(x:String)" />
     <x:Property Name="in_str_BusinessDepartmentName" Type="InArgument(x:String)" />
@@ -17,7 +17,8 @@
     <x:Property sap2010:Annotation.AnnotationText="If you put a path here, it will be used instead of the general asset" Name="in_str_CustomMainRPA_FolderPath" Type="InArgument(x:String)" />
     <x:Property Name="in_boo_BulkTypeAllOrNothing" Type="InArgument(x:Boolean)" />
     <x:Property Name="in_boo_ToRaiseErrorIfAllFailedDueUniqueRef" Type="InArgument(x:Boolean)" />
-    <x:Property Name="in_datetime_Min" Type="InArgument(x:String)" />
+    <x:Property Name="in_int_DaysIntervalForMinDatetime" Type="InArgument(x:Int32)" />
+    <x:Property Name="in_int_DaysIntervalForMaxDatetime" Type="InArgument(x:Int32)" />
   </x:Members>
   <this:Main.in_ProcessSetup>
     <InArgument x:TypeArguments="hm:ProcessSetup" />
@@ -338,7 +339,7 @@
           <Transition.To>
             <State x:Name="__ReferenceID0" DisplayName="State_End Process" sap:VirtualizedContainerService.HintSize="137,130" sap2010:WorkflowViewState.IdRef="State_4" IsFinal="True">
               <State.Entry>
-                <If Condition="[out_list_JobBusinessExceptions.Count=1 AndAlso out_list_JobSystemExceptions.Count=0]" DisplayName="If there is only one single business exception" sap:VirtualizedContainerService.HintSize="727.2,359.2" sap2010:WorkflowViewState.IdRef="If_11">
+                <If Condition="[out_list_JobBusinessExceptions.Count=1 AndAlso out_list_JobSystemExceptions.Count=0]" DisplayName="If there is only one single business exception" sap:VirtualizedContainerService.HintSize="729,405" sap2010:WorkflowViewState.IdRef="If_11">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -346,10 +347,10 @@
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
                   <If.Then>
-                    <Throw DisplayName="Throw the only one business exception" Exception="[New BusinessRuleException(&quot;Exception.s:&quot;+Environment.NewLine+&quot;Business:&quot;+Environment.NewLine+&quot;#1: &quot;+out_list_JobBusinessExceptions(0).Message+Environment.NewLine+&quot;Data: &quot;+Newtonsoft.Json.JsonConvert.SerializeObject(out_list_JobBusinessExceptions(0).Data))]" sap:VirtualizedContainerService.HintSize="200,22.4" sap2010:WorkflowViewState.IdRef="Throw_5" />
+                    <Throw DisplayName="Throw the only one business exception" Exception="[New BusinessRuleException(&quot;Exception.s:&quot;+Environment.NewLine+&quot;Business:&quot;+Environment.NewLine+&quot;#1: &quot;+out_list_JobBusinessExceptions(0).Message+Environment.NewLine+&quot;Data: &quot;+Newtonsoft.Json.JsonConvert.SerializeObject(out_list_JobBusinessExceptions(0).Data))]" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="Throw_5" />
                   </If.Then>
                   <If.Else>
-                    <If Condition="[out_list_JobBusinessExceptions.Count&gt;0 OrElse out_list_JobSystemExceptions.Count&gt;0]" DisplayName="if there are exceptions" sap:VirtualizedContainerService.HintSize="483.2,209.6" sap2010:WorkflowViewState.IdRef="If_10">
+                    <If Condition="[out_list_JobBusinessExceptions.Count&gt;0 OrElse out_list_JobSystemExceptions.Count&gt;0]" DisplayName="if there are exceptions" sap:VirtualizedContainerService.HintSize="484,247" sap2010:WorkflowViewState.IdRef="If_10">
                       <sap:WorkflowViewStateService.ViewState>
                         <scg:Dictionary x:TypeArguments="x:String, x:Object">
                           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -357,7 +358,7 @@
                         </scg:Dictionary>
                       </sap:WorkflowViewStateService.ViewState>
                       <If.Then>
-                        <Throw DisplayName="Throw the exceptions" Exception="[New System.Exception(&quot;Exception.s:&quot;+Environment.NewLine+(IF(out_list_JobBusinessExceptions.Count&gt;0,&quot;Business:&quot;+Environment.NewLine+String.Join(Environment.NewLine,out_list_JobBusinessExceptions.Select(function(x, index) &quot;#&quot;+(index+1).ToString+&quot;: &quot;+x.Message+Environment.NewLine+&quot;Data: &quot;+Newtonsoft.Json.JsonConvert.SerializeObject(x.Data))),&quot;&quot;)+IF(out_list_JobSystemExceptions.Count&gt;0,Environment.NewLine+&quot;System:&quot;+Environment.NewLine+String.Join(Environment.NewLine,out_list_JobSystemExceptions.Select(function(x, index) &quot;#&quot;+(index+1).ToString+&quot;: &quot;+x.Message+Environment.NewLine+&quot;Data: &quot;+Newtonsoft.Json.JsonConvert.SerializeObject(x.Data))),&quot;&quot;)).Trim)]" sap:VirtualizedContainerService.HintSize="200,22.4" sap2010:WorkflowViewState.IdRef="Throw_6" />
+                        <Throw DisplayName="Throw the exceptions" Exception="[New System.Exception(&quot;Exception.s:&quot;+Environment.NewLine+(IF(out_list_JobBusinessExceptions.Count&gt;0,&quot;Business:&quot;+Environment.NewLine+String.Join(Environment.NewLine,out_list_JobBusinessExceptions.Select(function(x, index) &quot;#&quot;+(index+1).ToString+&quot;: &quot;+x.Message+Environment.NewLine+&quot;Data: &quot;+Newtonsoft.Json.JsonConvert.SerializeObject(x.Data))),&quot;&quot;)+IF(out_list_JobSystemExceptions.Count&gt;0,Environment.NewLine+&quot;System:&quot;+Environment.NewLine+String.Join(Environment.NewLine,out_list_JobSystemExceptions.Select(function(x, index) &quot;#&quot;+(index+1).ToString+&quot;: &quot;+x.Message+Environment.NewLine+&quot;Data: &quot;+Newtonsoft.Json.JsonConvert.SerializeObject(x.Data))),&quot;&quot;)).Trim)]" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="Throw_6" />
                       </If.Then>
                     </If>
                   </If.Else>
@@ -445,7 +446,10 @@
                             <mva:VisualBasicReference x:TypeArguments="hm:ProcessSetup" ExpressionText="in_ProcessSetup" />
                           </InOutArgument>
                           <InArgument x:TypeArguments="s:DateTime" x:Key="in_datetime_Min">
-                            <mva:VisualBasicValue x:TypeArguments="s:DateTime" ExpressionText="Datetime.ParseExact(in_datetime_Min,&quot;dd/MM/yyyy&quot;,nothing)" />
+                            <mva:VisualBasicValue x:TypeArguments="s:DateTime" ExpressionText="Now.AddDays(-1*in_int_DaysIntervalForMinDatetime)" />
+                          </InArgument>
+                          <InArgument x:TypeArguments="s:DateTime" x:Key="in_datetime_Max">
+                            <mva:VisualBasicValue x:TypeArguments="s:DateTime" ExpressionText="Now.AddDays(-1*in_int_DaysIntervalForMaxDatetime)" />
                           </InArgument>
                         </ui:InvokeWorkflowFile.Arguments>
                       </ui:InvokeWorkflowFile>

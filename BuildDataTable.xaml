@@ -3,10 +3,14 @@
     <x:Property Name="io_dt_dataForBulkAddQueueITems" Type="InOutArgument(sd:DataTable)" />
     <x:Property Name="io_ProcessSetup" Type="InOutArgument(hm:ProcessSetup)" />
     <x:Property Name="in_datetime_Min" Type="InArgument(s:DateTime)" />
+    <x:Property Name="in_datetime_Max" Type="InArgument(s:DateTime)" />
   </x:Members>
   <this:BuildDataTable.in_datetime_Min>
     <InArgument x:TypeArguments="s:DateTime" />
   </this:BuildDataTable.in_datetime_Min>
+  <this:BuildDataTable.in_datetime_Max>
+    <InArgument x:TypeArguments="s:DateTime" />
+  </this:BuildDataTable.in_datetime_Max>
   <sap:VirtualizedContainerService.HintSize>1125,1328</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
@@ -162,7 +166,7 @@
                   <av:PointCollection x:Key="ConnectorLocation">510,310.54 510,360.54</av:PointCollection>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
-              <h:NavigateToReleasesTable sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="NavigateToReleasesTable_1" in_datetime_MinDate="[in_datetime_Min]">
+              <h:NavigateToReleasesTable sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="NavigateToReleasesTable_1" in_datetime_MaxDate="[in_datetime_Max]" in_datetime_MinDate="[in_datetime_Min]">
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
